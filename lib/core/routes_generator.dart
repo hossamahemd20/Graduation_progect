@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:graduation_project/core/page_route_names.dart';
 import 'package:graduation_project/model/forget%20password/forget%20password.dart';
 import 'package:graduation_project/model/login%20view/login%20view.dart';
 import 'package:graduation_project/model/splash%20screen/splash_view.dart';
 
+import '../model/home/home_view.dart';
 import '../model/registration/regisration view.dart';
 
 class RouteGenerator{
@@ -20,7 +20,10 @@ switch(settings.name)
     return MaterialPageRoute(builder: (context)=>RegistrationView(),settings:settings);
   case PageRouteNames.forgetpassword:
     return MaterialPageRoute(builder: (context)=>ForgetPassword(),settings: settings);
-  default:
+      case PageRouteNames.home_view:
+        return MaterialPageRoute(
+            builder: (context) => HomeView(), settings: settings);
+      default:
     return MaterialPageRoute(builder: (context)=>SplashView());
 
     }
