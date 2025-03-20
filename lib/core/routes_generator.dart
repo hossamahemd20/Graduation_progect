@@ -22,7 +22,7 @@ switch(settings.name)
     return MaterialPageRoute(builder: (context)=>ForgetPassword(),settings: settings);
       case PageRouteNames.home_view:
         return MaterialPageRoute(
-            builder: (context) => HomeView(), settings: settings);
+            builder: (context) => HomeScreen(), settings: settings);
       default:
     return MaterialPageRoute(builder: (context)=>SplashView());
 

@@ -5,10 +5,9 @@ class CustomBottomNav extends StatelessWidget {
   final Function(int) onItemTapped;
 
   const CustomBottomNav({
-    Key? key,
     required this.selectedIndex,
     required this.onItemTapped,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +20,7 @@ class CustomBottomNav extends StatelessWidget {
         ),
       ),
       child: BottomNavigationBar(
+
         backgroundColor: Colors.transparent,
         elevation: 0,
         type: BottomNavigationBarType.fixed,
@@ -30,7 +30,8 @@ class CustomBottomNav extends StatelessWidget {
         unselectedFontSize: 12,
         currentIndex: selectedIndex,
         onTap: onItemTapped,
-        items: const [
+
+        items:  const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",

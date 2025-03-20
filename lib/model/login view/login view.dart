@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/page_route_names.dart';
+import 'package:graduation_project/model/home/home_view.dart';
 
 import '../../Api/login_api.dart';
 
@@ -112,22 +113,25 @@ class _LoginViewState extends State<LoginView> {
                   child: FilledButton(
                     onPressed: () async {
                       if (formkey.currentState!.validate()) {
-                        String? loginResult = await AuthService.loginUser(
-                          email: emailController.text,
-                          password: passwordController.text,
+                        // String? loginResult = await AuthService.loginUser(
+                        //   email: emailController.text,
+                        //   password: passwordController.text,
+                        // );
+
+                        // if (loginResult == null) {
+                          // نجاح
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) =>  HomeScreen()),
                         );
 
-                        if (loginResult == null) {
-                          // نجاح
-                          Navigator.pushReplacementNamed(
-                              context, PageRouteNames.home_view);
-                        } else {
-                          // فشل - اعرض الرسالة
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                content: Text("Login failed: $loginResult")),
-                          );
-                        }
+                        // } else {
+                        //   // فشل - اعرض الرسالة
+                        //   ScaffoldMessenger.of(context).showSnackBar(
+                        //     SnackBar(
+                        //         content: Text("Login failed: $loginResult")),
+                        //   );
+                        // }
                       }
                     },
                     child: const Text("Login"),
