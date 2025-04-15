@@ -37,12 +37,12 @@ class CustomBottomNav extends StatelessWidget {
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.create),
+            icon: Icon(Icons.quiz),
             label: "Quiz",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: "Books",
+            icon: Icon(Icons.table_view),
+            label: "Time Table",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

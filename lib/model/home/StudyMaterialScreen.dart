@@ -5,7 +5,7 @@ class StudyMaterialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Home")),
+      appBar: AppBar(title: Text("Study Material")),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
@@ -14,7 +14,7 @@ class StudyMaterialScreen extends StatelessWidget {
               MaterialPageRoute(builder: (context) => StudyMaterialScreen()),
             );
           },
-          child: Text("Go to About Us"),
+          child: Text("Welcome To Study Material Page"),
         ),
       ),
     );

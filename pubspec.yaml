@@ -5,20 +5,30 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.4
+  sdk: ">=3.5.4 <4.0.0"  # تم تعديل الصيغة لتكون أكثر دقة
 
 dependencies:
   flutter:
     sdk: flutter
 
+  # مكتبات UI وأيقونات
+  iconsax_flutter: ^1.0.0  # بدلاً من iconsax
+  flutter_svg: ^2.0.7
   cupertino_icons: ^1.0.8
+
+  # مكتبات وظيفية
+  url_launcher: ^6.2.1
   chewie: ^1.7.0
   video_player: ^2.7.0
+
+  # يمكنك إضافة هذه المكتبات لتحسين الأداء (اختياري)
+  cached_network_image: ^3.2.3
+  provider: ^6.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  font_awesome_flutter: ^10.0.0
   flutter_lints: ^4.0.0
 
 flutter:
@@ -26,3 +36,4 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/patterns/

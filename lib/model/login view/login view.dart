@@ -147,7 +147,7 @@ class _LoginViewState extends State<LoginView> {
                           context, PageRouteNames.forgetpassword);
                     },
                     child: const Text(
-                      "Forgot Password?",
+                      "",
                       style: TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 22,
@@ -165,7 +165,7 @@ class _LoginViewState extends State<LoginView> {
                           context, PageRouteNames.regisration);
                     },
                     child: const Text(
-                      " Create New Account ! ",
+                      " ",
                       style: TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 22,

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class SolvingProblemsScreen extends StatelessWidget {
+class material extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Solving Problems"),
+        title: Text("Material"),
         backgroundColor: Color(0xFF7E7BB9),
       ),
       body: Center(
         child: Text(
-          "This is the Solving Problems Screen",
+          "This is the Material Screen",
           style: TextStyle(fontSize: 18),
         ),
       ),

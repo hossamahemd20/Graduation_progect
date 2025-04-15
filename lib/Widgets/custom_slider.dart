@@ -43,9 +43,9 @@ class CustomSidebar extends StatelessWidget {
                 _buildMenuItem(context, "FEES", () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => FeesScreen()));
                 }),
-                _buildMenuItem(context, "STUDY MATERIAL", () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => StudyMaterialScreen()));
-                }),
+                // _buildMenuItem(context, "STUDY MATERIAL", () {
+                //   Navigator.push(context, MaterialPageRoute(builder: (context) => StudyMaterialScreen()));
+                // }),
                 _buildMenuItem(context, "GALLERY", () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => GalleryScreen()));
                 }),
@@ -53,7 +53,7 @@ class CustomSidebar extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUsScreen()));
                 }),
                 Spacer(),
-                _buildMenuItem(context, "LOGIN / SIGNUP", () {
+                _buildMenuItem(context, "LOGIN ", () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView()));
                 }),
                 SizedBox(height: 40),

@@ -28,7 +28,7 @@ class _SplashViewState extends State<SplashView> {
     decoration: const BoxDecoration(
       color: Color(0xFF8292BB),
       image: DecorationImage(
-          image: AssetImage("assets/images/smart-genius-high-resolution-logo-transparent (3) 1.png"),
+          image: AssetImage("assets/images/Splash2.png"),
         fit: BoxFit.contain
 
       ),
