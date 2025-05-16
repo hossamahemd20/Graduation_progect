@@ -40,15 +40,17 @@ class GalleryScreen extends StatelessWidget {
           AnimatedOpacity(
             opacity: 1.0,
             duration: Duration(seconds: 1),
-            child: Container(
+            child: SizedBox(
               width: 140,
               height: 140,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.white, width: 4),
-                image: const DecorationImage(
-                  image: AssetImage('assets/students/top_student.jpg'),
-                  fit: BoxFit.cover,
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.white, width: 4),
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/s2.png'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -68,7 +70,7 @@ class GalleryScreen extends StatelessWidget {
             duration: Duration(seconds: 3),
             child: Text(
               'المجموع: 399 / 400',
-              style: TextStyle(fontSize: 16, color: Colors.white.withOpacity(0.9)),
+              style: TextStyle(fontSize: 16, color: Colors.white70),
             ),
           ),
         ],
@@ -93,7 +95,7 @@ class GalleryScreen extends StatelessWidget {
           return _studentCard(
             'assets/images/student_${index + 1}.jpg',
             'الطالب ${index + 1}',
-            400 - index, // المجموع يقل مع كل طالب
+            400 - index,
           );
         },
       ),
@@ -116,11 +118,17 @@ class GalleryScreen extends StatelessWidget {
               topLeft: Radius.circular(15),
               topRight: Radius.circular(15),
             ),
-            child: Image.asset(
-              imagePath,
-              height: 160,
+            child: SizedBox(
+              height: 120,
               width: double.infinity,
-              fit: BoxFit.cover,
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: Image.asset(
+                  imagePath,
+                  width: 200,
+                  height: 200,
+                ),
+              ),
             ),
           ),
           Padding(
