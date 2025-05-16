@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/page_route_names.dart';
+
+import '../../core/page_route_names.dart';
+
 
 class RegistrationView extends StatefulWidget {
   const RegistrationView({super.key});

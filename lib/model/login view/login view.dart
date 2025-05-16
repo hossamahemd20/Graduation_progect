@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/page_route_names.dart';
-import 'package:graduation_project/model/home/home_view.dart';
 
 import '../../Api/login_api.dart';
+import '../../core/page_route_names.dart';
+import '../home/home_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -17,6 +17,7 @@ class _LoginViewState extends State<LoginView> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,12 +30,19 @@ class _LoginViewState extends State<LoginView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Image(
-                  image: AssetImage("assets/images/sgs logo.png"),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  child: Center(
+                    child: Hero(
+                      tag: 'logo',
+                      child: Image(
+                        image: AssetImage("assets/images/sgslogo.png"),
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
                 ),
-                const SizedBox(
-                  height: 100,
-                ),
+                const SizedBox(height: 50),
                 TextFormField(
                     controller: nameController,
                     decoration: InputDecoration(
@@ -50,9 +58,7 @@ class _LoginViewState extends State<LoginView> {
                       }
                       return null;
                     }),
-                SizedBox(
-                  height: 30,
-                ),
+                SizedBox(height: 30),
                 TextFormField(
                   controller: emailController,
                   decoration: InputDecoration(
@@ -75,13 +81,9 @@ class _LoginViewState extends State<LoginView> {
                     return null;
                   },
                 ),
-                SizedBox(
-                  height: 30,
-                ),
+                SizedBox(height: 30),
                 TextFormField(
-                    onFieldSubmitted: (value) {
-                      // userModel().password=value;
-                    },
+                    onFieldSubmitted: (value) {},
                     controller: passwordController,
                     decoration: InputDecoration(
                         label: const Text(" Password"),
@@ -106,40 +108,40 @@ class _LoginViewState extends State<LoginView> {
                       }
                       return null;
                     }),
-                const SizedBox(
-                  height: 40,
-                ),
+                const SizedBox(height: 40),
                 Center(
                   child: FilledButton(
                     onPressed: () async {
                       if (formkey.currentState!.validate()) {
-                        // String? loginResult = await AuthService.loginUser(
-                        //   email: emailController.text,
-                        //   password: passwordController.text,
-                        // );
-
-                        // if (loginResult == null) {
-                          // نجاح
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (_) =>  HomeScreen()),
+                        // استدعاء دالة تسجيل الدخول
+                        String? loginResult = await AuthService.loginUser(
+                          email: emailController.text,
+                          password: passwordController.text,
                         );
 
-                        // } else {
-                        //   // فشل - اعرض الرسالة
-                        //   ScaffoldMessenger.of(context).showSnackBar(
-                        //     SnackBar(
-                        //         content: Text("Login failed: $loginResult")),
-                        //   );
-                        // }
+                        if (loginResult == null) {
+                          // التوكن تم تخزينه بنجاح
+
+                          // التنقل إلى الشاشة الرئيسية
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  HomeScreen(),
+                            ),
+                          );
+                        } else {
+                          // فشل عملية تسجيل الدخول
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Login failed: $loginResult")),
+                          );
+                        }
                       }
                     },
                     child: const Text("Login"),
                   ),
                 ),
-                const SizedBox(
-                  height: 40,
-                ),
+                const SizedBox(height: 40),
                 Center(
                   child: InkWell(
                     onTap: () {
@@ -147,7 +149,7 @@ class _LoginViewState extends State<LoginView> {
                           context, PageRouteNames.forgetpassword);
                     },
                     child: const Text(
-                      "",
+                      "Forgot Password?",
                       style: TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 22,
@@ -155,9 +157,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 30),
                 Center(
                   child: InkWell(
                     onTap: () {
@@ -165,7 +165,7 @@ class _LoginViewState extends State<LoginView> {
                           context, PageRouteNames.regisration);
                     },
                     child: const Text(
-                      " ",
+                      " Create New Account ! ",
                       style: TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 22,
@@ -177,7 +177,7 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
         ),
-      ), // Background color
+      ),
     );
   }
 }

@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               children: const [
                 CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/sgs logo.png'),
+                  backgroundImage: AssetImage('assets/images/sgslogo.png'),
                   radius: 20,
                 ),
                 SizedBox(width: 10),
@@ -179,7 +179,7 @@ class HomeContent extends StatelessWidget {
                   mainAxisSpacing: 20, // زيادة المسافة بين العناصر
                   crossAxisSpacing: 20, // زيادة المسافة بين الأعمدة
                   children: [
-                    _buildOption(context, "Video Lecture", Icons.ondemand_video, VideoLectureView(videoUrl: ' ')),
+                    _buildOption(context, "Video Lecture", Icons.ondemand_video, VideoListScreen()),
                     _buildOption(context, "Materials", Icons.subject, material()),
                     _buildOption(context, "Grades", Icons.grade, Grades()),
                     _buildOption(context, "Events", Icons.event, Events()), // تأكد من أن Quizscreen موجودة لديك

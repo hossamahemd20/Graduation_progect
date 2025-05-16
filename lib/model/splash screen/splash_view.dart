@@ -24,16 +24,28 @@ class _SplashViewState extends State<SplashView> {
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
-    decoration: const BoxDecoration(
-      color: Color(0xFF8292BB),
-      image: DecorationImage(
-          image: AssetImage("assets/images/Splash2.png"),
-        fit: BoxFit.contain
-
+    return Scaffold(
+      backgroundColor: const Color(0xFF8292BB),
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: Center(
+                child: Hero(
+                  tag: 'logo',
+                  child: Image.asset(
+                    "assets/images/sgslogo.png",
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-
-    ),
     );
   }
 }
