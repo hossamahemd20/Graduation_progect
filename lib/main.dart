@@ -4,6 +4,7 @@ import 'core/page_route_names.dart';
 import 'core/routes_generator.dart';
 import 'model/splash screen/splash_view.dart';
 
+// hi hossam
 void main() {
   runApp(const MyApp());
 }
