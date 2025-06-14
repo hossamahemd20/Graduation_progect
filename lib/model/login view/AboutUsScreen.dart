@@ -330,8 +330,8 @@ class AboutUsScreen extends StatelessWidget {
           child: Row(
             children: [
               _buildTeamMember('Eng. Ismail Ahmed Aboelhamd', ' Flutter Developer', 'assets/images/sgs logo.png'),
-              _buildTeamMember('Eng.  Hossam Ahmed Hassan', 'Flutter Developer', 'assets/team/2.jpg'),
-              _buildTeamMember('Eng.  Mohamed Abdelfatah. ', 'Back End Developer', 'assets/team/3.jpg'),
+              _buildTeamMember('Eng.  Hossam Ahmed Hassan', 'Flutter Developer', 'assets/images/Hossam.jpg'),
+              _buildTeamMember('Eng.  Mohamed Abdelfatah. ', 'Back End Developer', 'assets/images/mohamed.jpg'),
               _buildTeamMember('Eng. Mostafa Mohamed  ', 'Back End Developer', 'assets/team/4.jpg'),
               _buildTeamMember('Eng. Manar Ahmed Ezz', 'UI/UX Designer', 'assets/team/5.jpg'),
               _buildTeamMember('Eng. Aya Seif', 'Front End Developer', 'assets/team/6.jpg'),

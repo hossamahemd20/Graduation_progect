@@ -1,8 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 
-
+void main() {
+  runApp(TimeTable());
+}
 
 class TimeTable extends StatelessWidget {
   @override
@@ -19,12 +19,7 @@ class TimeTable extends StatelessWidget {
   }
 }
 
-class GradeSelectionScreen extends StatefulWidget {
-  @override
-  _GradeSelectionScreenState createState() => _GradeSelectionScreenState();
-}
-
-class _GradeSelectionScreenState extends State<GradeSelectionScreen> {
+class GradeSelectionScreen extends StatelessWidget {
   final List<Map<String, dynamic>> grades = [
     {'name': 'الرابع الابتدائي', 'icon': Icons.school, 'level': 'ابتدائي'},
     {'name': 'الخامس الابتدائي', 'icon': Icons.school, 'level': 'ابتدائي'},
@@ -43,12 +38,7 @@ class _GradeSelectionScreenState extends State<GradeSelectionScreen> {
       appBar: AppBar(
         title: Text('اختر صفك الدراسي'),
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        automaticallyImplyLeading: false, // إخفاء زر العودة هنا
       ),
       body: GridView.builder(
         padding: EdgeInsets.all(16),
@@ -66,7 +56,7 @@ class _GradeSelectionScreenState extends State<GradeSelectionScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ScheduleScreen(gradeName: grades[index]['name']),
+                  builder: (_) => ScheduleScreen(gradeName: grades[index]['name']),
                 ),
               );
             },
@@ -76,7 +66,6 @@ class _GradeSelectionScreenState extends State<GradeSelectionScreen> {
     );
   }
 }
-
 
 class GradeCard extends StatelessWidget {
   final Map<String, dynamic> grade;
@@ -115,16 +104,11 @@ class GradeCard extends StatelessWidget {
   }
 }
 
-class ScheduleScreen extends StatefulWidget {
+class ScheduleScreen extends StatelessWidget {
   final String gradeName;
 
   ScheduleScreen({required this.gradeName});
 
-  @override
-  _ScheduleScreenState createState() => _ScheduleScreenState();
-}
-
-class _ScheduleScreenState extends State<ScheduleScreen> {
   final Map<String, List<Map<String, String>>> scheduleData = {
     'الأحد': [
       {'time': '8:00 - 9:00', 'subject': 'اللغة العربية', 'teacher': 'أ. أحمد محمد', 'room': '101'},
@@ -135,56 +119,53 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       {'time': '12:30 - 1:30', 'subject': 'التربية الإسلامية', 'teacher': 'أ. عبدالله سالم', 'room': '104'},
     ],
     'الاثنين': [
-      {'time': '8:00 - 9:00', 'subject': 'التاريخ', 'teacher': 'أ. سارة أحمد', 'room': '105'},
-      {'time': '9:00 - 10:00', 'subject': 'الجغرافيا', 'teacher': 'أ. ليلى عمر', 'room': '106'},
-      {'time': '10:00 - 11:00', 'subject': 'الفيزياء', 'teacher': 'د. ناصر علي', 'room': 'المعمل 2'},
+      {'time': '8:00 - 9:00', 'subject': 'الرياضيات', 'teacher': 'د. علي محمود', 'room': '102'},
+      {'time': '9:00 - 10:00', 'subject': 'اللغة العربية', 'teacher': 'أ. أحمد محمد', 'room': '101'},
+      {'time': '10:00 - 11:00', 'subject': 'التاريخ', 'teacher': 'أ. سامي راشد', 'room': '201'},
       {'time': '11:00 - 11:30', 'subject': 'فسحة', 'teacher': '', 'room': ''},
-      {'time': '11:30 - 12:30', 'subject': 'الكيمياء', 'teacher': 'أ. هدى مصطفى', 'room': 'المعمل 3'},
-      {'time': '12:30 - 1:30', 'subject': 'التربية الفنية', 'teacher': 'أ. إبراهيم فتحي', 'room': 'الاستوديو'},
+      {'time': '11:30 - 12:30', 'subject': 'العلوم', 'teacher': 'أ. خالد عبدالله', 'room': 'المعمل 1'},
+      {'time': '12:30 - 1:30', 'subject': 'التربية الإسلامية', 'teacher': 'أ. عبدالله سالم', 'room': '104'},
     ],
     'الثلاثاء': [
-      {'time': '8:00 - 9:00', 'subject': 'علوم الحاسب', 'teacher': 'د. محمد ناصر', 'room': 'المعمل 4'},
-      {'time': '9:00 - 10:00', 'subject': 'الأحياء', 'teacher': 'أ. نورا عبدالرحمن', 'room': 'المعمل 5'},
-      {'time': '10:00 - 11:00', 'subject': 'اللغة الفرنسية', 'teacher': 'أ. ياسمين كمال', 'room': '107'},
+      {'time': '8:00 - 9:00', 'subject': 'اللغة الإنجليزية', 'teacher': 'أ. سامي راشد', 'room': '103'},
+      {'time': '9:00 - 10:00', 'subject': 'الرياضيات', 'teacher': 'د. علي محمود', 'room': '102'},
+      {'time': '10:00 - 11:00', 'subject': 'الفيزياء', 'teacher': 'أ. خالد عبدالله', 'room': 'المعمل 2'},
       {'time': '11:00 - 11:30', 'subject': 'فسحة', 'teacher': '', 'room': ''},
-      {'time': '11:30 - 12:30', 'subject': 'التربية الرياضية', 'teacher': 'أ. محمود رياض', 'room': 'الملعب'},
-      {'time': '12:30 - 1:30', 'subject': 'علم الاجتماع', 'teacher': 'د. هناء علي', 'room': '108'},
+      {'time': '11:30 - 12:30', 'subject': 'الكيمياء', 'teacher': 'د. سارة أحمد', 'room': 'المعمل 3'},
+      {'time': '12:30 - 1:30', 'subject': 'التاريخ', 'teacher': 'أ. سامي راشد', 'room': '201'},
     ],
     'الأربعاء': [
-      {'time': '8:00 - 9:00', 'subject': 'اللغة العربية', 'teacher': 'أ. أحمد محمد', 'room': '101'},
-      {'time': '9:00 - 10:00', 'subject': 'الرياضيات', 'teacher': 'د. علي محمود', 'room': '102'},
-      {'time': '10:00 - 11:00', 'subject': 'التربية الوطنية', 'teacher': 'أ. فارس خالد', 'room': '103'},
+      {'time': '8:00 - 9:00', 'subject': 'العلوم', 'teacher': 'أ. خالد عبدالله', 'room': 'المعمل 1'},
+      {'time': '9:00 - 10:00', 'subject': 'اللغة العربية', 'teacher': 'أ. أحمد محمد', 'room': '101'},
+      {'time': '10:00 - 11:00', 'subject': 'الرياضيات', 'teacher': 'د. علي محمود', 'room': '102'},
       {'time': '11:00 - 11:30', 'subject': 'فسحة', 'teacher': '', 'room': ''},
-      {'time': '11:30 - 12:30', 'subject': 'الاقتصاد المنزلي', 'teacher': 'أ. منى سعيد', 'room': 'المعمل 6'},
-      {'time': '12:30 - 1:30', 'subject': 'المهارات الحياتية', 'teacher': 'أ. وائل كمال', 'room': '104'},
+      {'time': '11:30 - 12:30', 'subject': 'التربية الإسلامية', 'teacher': 'أ. عبدالله سالم', 'room': '104'},
+      {'time': '12:30 - 1:30', 'subject': 'اللغة الإنجليزية', 'teacher': 'أ. سامي راشد', 'room': '103'},
     ],
     'الخميس': [
       {'time': '8:00 - 9:00', 'subject': 'اللغة الإنجليزية', 'teacher': 'أ. سامي راشد', 'room': '103'},
-      {'time': '9:00 - 10:00', 'subject': 'التربية الإسلامية', 'teacher': 'أ. عبدالله سالم', 'room': '104'},
-      {'time': '10:00 - 11:00', 'subject': 'النشاط العلمي', 'teacher': 'أ. خالد عبدالله', 'room': '105'},
+      {'time': '9:00 - 10:00', 'subject': 'الرياضيات', 'teacher': 'د. علي محمود', 'room': '102'},
+      {'time': '10:00 - 11:00', 'subject': 'العلوم', 'teacher': 'أ. خالد عبدالله', 'room': 'المعمل 1'},
       {'time': '11:00 - 11:30', 'subject': 'فسحة', 'teacher': '', 'room': ''},
-      {'time': '11:30 - 12:30', 'subject': 'التربية الفنية', 'teacher': 'أ. إبراهيم فتحي', 'room': 'الاستوديو'},
-      {'time': '12:30 - 1:30', 'subject': 'التربية الرياضية', 'teacher': 'أ. محمود رياض', 'room': 'الملعب'},
+      {'time': '11:30 - 12:30', 'subject': 'التاريخ', 'teacher': 'أ. سامي راشد', 'room': '201'},
+      {'time': '12:30 - 1:30', 'subject': 'التربية الإسلامية', 'teacher': 'أ. عبدالله سالم', 'room': '104'},
     ],
   };
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: scheduleData.length,
+      length: scheduleData.keys.length,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('جدول ${widget.gradeName}'),
+          title: Text('جدول $gradeName'),
           centerTitle: true,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
           bottom: TabBar(
-            isScrollable: true,
             tabs: scheduleData.keys.map((day) => Tab(text: day)).toList(),
+            isScrollable: true,
+            labelColor: Color(0xFF923CFF),          // لون البنفسجي للنصوص المحددة
+            unselectedLabelColor: Color(0xFFB39DDB), // لون بنفسجي فاتح للنصوص غير المحددة
+            indicatorColor: Color(0xFF923CFF),       // لون البنفسجي للمؤشر
           ),
         ),
         body: TabBarView(
@@ -223,79 +204,23 @@ class PeriodCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(8),
+      margin: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
       child: Padding(
         padding: EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  period['time'] ?? '',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-                if ((period['subject'] ?? '').isNotEmpty)
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: _getSubjectColor(period['subject'] ?? ''),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      period['subject'] ?? '',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-              ],
+            Text(
+              period['time'] ?? '',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            if ((period['subject'] ?? '').isNotEmpty) ...[
-              SizedBox(height: 8),
-              Row(
-                children: [
-                  Icon(Icons.person, size: 16, color: Colors.grey),
-                  SizedBox(width: 4),
-                  Text('المدرس: ${period['teacher'] ?? ''}'),
-                ],
-              ),
-              SizedBox(height: 4),
-              Row(
-                children: [
-                  Icon(Icons.room, size: 16, color: Colors.grey),
-                  SizedBox(width: 4),
-                  Text('القاعة: ${period['room'] ?? ''}'),
-                ],
-              ),
-            ],
+            SizedBox(height: 6),
+            Text('المادة: ${period['subject'] ?? ''}'),
+            Text('المعلم: ${period['teacher'] ?? ''}'),
+            Text('القاعة: ${period['room'] ?? ''}'),
           ],
         ),
       ),
     );
-  }
-
-  Color _getSubjectColor(String subject) {
-    final colors = {
-      'اللغة العربية': Colors.green,
-      'الرياضيات': Colors.blue,
-      'العلوم': Colors.teal,
-      'اللغة الإنجليزية': Colors.purple,
-      'التربية الإسلامية': Colors.orange,
-      'التاريخ': Colors.brown,
-      'الجغرافيا': Colors.indigo,
-      'الفيزياء': Colors.blueAccent,
-      'الكيمياء': Colors.deepPurple,
-      'علوم الحاسب': Colors.cyan,
-      'الأحياء': Colors.lightGreen,
-      'اللغة الفرنسية': Colors.pink,
-      'التربية الوطنية': Colors.amber,
-      'الاقتصاد المنزلي': Colors.deepOrange,
-      'المهارات الحياتية': Colors.lime,
-      'النشاط العلمي': Colors.cyanAccent,
-      'التربية الفنية': Colors.pinkAccent,
-      'التربية الرياضية': Colors.red,
-      'علم الاجتماع': Colors.blueGrey,
-    };
-    return colors[subject] ?? Colors.grey;
   }
 }

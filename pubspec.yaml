@@ -12,16 +12,21 @@ dependencies:
     sdk: flutter
 
   # مكتبات UI وأيقونات
-  iconsax_flutter: ^1.0.0  # بدلاً من iconsax
+  iconsax_flutter: ^1.0.0
   flutter_svg: ^2.0.7
   cupertino_icons: ^1.0.8
+  image_picker: ^1.0.4
+
 
   # مكتبات وظيفية
   url_launcher: ^6.2.1
   chewie: ^1.7.0
   video_player: ^2.7.0
 
-  # يمكنك إضافة هذه المكتبات لتحسين الأداء (اختياري)
+  # أنيميشن لاسم المدرسة
+  animated_text_kit: ^4.2.2
+
+  # تحسين الأداء
   cached_network_image: ^3.2.3
   provider: ^6.1.1
 

@@ -8,17 +8,23 @@ class GalleryScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('معرض الطلاب'),
+        title: const Text('معرض الطلاب', style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search, color: Colors.white),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             _buildTopStudentSection(),
             const SizedBox(height: 30),
-            _buildStudentGrid(),
+            _buildStudentGrid(context),
           ],
         ),
       ),
@@ -29,48 +35,58 @@ class GalleryScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
       decoration: BoxDecoration(
-        color: primaryColor,
+        gradient: LinearGradient(
+          colors: [primaryColor, primaryColor.withOpacity(0.8)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(40),
           bottomRight: Radius.circular(40),
         ),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+            offset: Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [
-          AnimatedOpacity(
-            opacity: 1.0,
-            duration: Duration(seconds: 1),
-            child: SizedBox(
-              width: 140,
-              height: 140,
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: 4),
-                  image: const DecorationImage(
-                    image: AssetImage('assets/images/s2.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+          CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 60,
+            child: ClipOval(
+              child: Image.asset(
+                'assets/images/eng.jpg',
+                fit: BoxFit.cover,
+                width: 130,
+                height: 130,
+                errorBuilder: (context, error, stackTrace) =>
+                const Icon(Icons.person, size: 50, color: Colors.white),
               ),
             ),
           ),
           const SizedBox(height: 20),
-          AnimatedOpacity(
-            opacity: 1.0,
-            duration: Duration(seconds: 2),
-            child: const Text(
-              'أحمد خالد عبد الله',
-              style: TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
+          const Text(
+            'أسماعيل احمد ابوالحمد ',
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              shadows: [
+                Shadow(color: Colors.black26, offset: Offset(1, 1), blurRadius: 2),
+              ],
             ),
           ),
-          const SizedBox(height: 5),
-          AnimatedOpacity(
-            opacity: 1.0,
-            duration: Duration(seconds: 3),
-            child: Text(
-              'المجموع: 399 / 400',
-              style: TextStyle(fontSize: 16, color: Colors.white70),
+          const SizedBox(height: 8),
+          const Text(
+            'المجموع: 399 / 400',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.white70,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],
@@ -78,19 +94,19 @@ class GalleryScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStudentGrid() {
+  Widget _buildStudentGrid(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
       child: GridView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
-          childAspectRatio: 0.75,
-        ),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: 20,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: MediaQuery.of(context).size.width > 600 ? 4 : 2,
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
+          childAspectRatio: 0.72, // ده اللي بيظبط الشكل ومتلاشي overflow
+        ),
         itemBuilder: (context, index) {
           return _studentCard(
             'assets/images/student_${index + 1}.jpg',
@@ -103,69 +119,64 @@ class GalleryScreen extends StatelessWidget {
   }
 
   Widget _studentCard(String imagePath, String name, int totalScore) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
+    return Card(
+      elevation: 3,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 4)),
-        ],
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(15),
-              topRight: Radius.circular(15),
-            ),
-            child: SizedBox(
-              height: 120,
-              width: double.infinity,
-              child: FittedBox(
+          Expanded(
+            flex: 5,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+              child: Image.asset(
+                imagePath,
                 fit: BoxFit.cover,
-                child: Image.asset(
-                  imagePath,
-                  width: 200,
-                  height: 200,
-                ),
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: Colors.grey[300],
+                    child: const Center(
+                      child: Icon(Icons.person, size: 50, color: Colors.grey),
+                    ),
+                  );
+                },
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              children: [
-                AnimatedOpacity(
-                  opacity: 1.0,
-                  duration: Duration(seconds: 1),
-                  child: Text(
+          Expanded(
+            flex: 4,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
                     name,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 15,
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-                const SizedBox(height: 6),
-                AnimatedOpacity(
-                  opacity: 1.0,
-                  duration: Duration(seconds: 2),
-                  child: Text(
+                  const SizedBox(height: 4),
+                  Text(
                     'المجموع: $totalScore',
-                    style: TextStyle(color: Colors.grey[600]),
+                    style: TextStyle(color: Colors.grey[600], fontSize: 13),
                   ),
-                ),
-                const SizedBox(height: 10),
-                AnimatedOpacity(
-                  opacity: 1.0,
-                  duration: Duration(seconds: 3),
-                  child: Text(
-                    'طالب متميز في الرياضيات، حصل على أعلى الدرجات في الامتحانات النهائية.',
-                    style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                    textAlign: TextAlign.center,
+                  const SizedBox(height: 4),
+                  Text(
+                    'طالب متميز في الرياضيات',
+                    style: TextStyle(fontSize: 11, color: Colors.grey[600]),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

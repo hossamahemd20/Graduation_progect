@@ -53,7 +53,7 @@ class CustomSidebar extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUsScreen()));
                 }),
                 Spacer(),
-                _buildMenuItem(context, "LOGIN ", () {
+                _buildMenuItem(context, "LOGOUT ", () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView()));
                 }),
                 SizedBox(height: 40),
